@@ -1,17 +1,18 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "next/navigation";
 import { fetchServicesSearch, fetchTeamSearch } from "../featchData/api";
 
-// Import Components
+
 import HeroSearchSection from "./components/HeroSearchSection";
 import TabNavigation from "./components/TabNavigation";
 import ServicesResults from "./components/ServicesResults";
 import TeamResults from "./components/TeamResults";
 import SearchSummary from "./components/SearchSummary";
 
-export default function SearchPage() {
+
+function SearchContent() {
   const language = useSelector(state => state.app.language);
   const input = useSelector(state => state.app.searchQuery);
   const searchParams = useSearchParams();
@@ -26,7 +27,6 @@ export default function SearchPage() {
   const [activeTab, setActiveTab] = useState('services'); 
 
   const isRTL = language !== "en";
-
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -52,6 +52,14 @@ export default function SearchPage() {
           }
         } catch (err) {
           console.error("Error fetching search data", err);
+
+          if (activeTab === 'services') {
+            setServiceResults([]);
+            setServiceMeta({ pagination: { total: 0 } });
+          } else {
+            setTeamResults([]);
+            setTeamMeta({ pagination: { total: 0 } });
+          }
         } finally {
           setIsLoading(false);
         }
@@ -65,7 +73,6 @@ export default function SearchPage() {
 
   return (
     <section className="min-h-screen bg-gray-50">
- 
       <HeroSearchSection
         query={query}
         setQuery={setQuery}
@@ -73,12 +80,10 @@ export default function SearchPage() {
         isRTL={isRTL}
       />
 
-
       <div 
         style={{direction: isRTL ? "rtl" : "ltr"}} 
         className="container mx-auto px-4 py-12 max-w-6xl"
       >
-   
         {query.trim() && (
           <div className="mb-8">
             <p className="text-gray-600 text-lg">
@@ -90,7 +95,6 @@ export default function SearchPage() {
           </div>
         )}
 
-
         <TabNavigation
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -101,7 +105,6 @@ export default function SearchPage() {
           isRTL={isRTL}
         />
 
-        {/* Results Content */}
         <div className="grid md:grid-cols-1 gap-8">
           {activeTab === 'services' ? (
             <ServicesResults
@@ -122,7 +125,6 @@ export default function SearchPage() {
           )}
         </div>
 
-    
         <SearchSummary
           query={query}
           serviceResults={serviceResults}
@@ -133,5 +135,26 @@ export default function SearchPage() {
         />
       </div>
     </section>
+  );
+}
+
+
+function SearchLoading() {
+  return (
+    <section className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+        <p className="mt-4 text-gray-600">جاري تحميل صفحة البحث...</p>
+      </div>
+    </section>
+  );
+}
+
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<SearchLoading />}>
+      <SearchContent />
+    </Suspense>
   );
 }

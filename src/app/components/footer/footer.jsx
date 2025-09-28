@@ -37,7 +37,7 @@ export default async function Footer() {
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-center pt-5 border-t-2 border-white/40 mt-5 gap-4 md:gap-0">
-        <div className="w-full md:w-[500px]">
+        <div className="w-full md:w-[600px]">
           <LinksFooter footerLinks={FooterData?.data?.footerLinks} />
         </div>
 
