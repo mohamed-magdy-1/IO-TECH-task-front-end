@@ -1,0 +1,72 @@
+
+
+
+
+.prose p{
+    color: #1E1E1E;
+font-weight: 400;
+margin: 20px 0;
+font-size: 16px;
+line-height: 26px;
+letter-spacing: 0px;
+text-align: justify;
+}
+
+.prose h2 , h3,h4{
+    color: #4B2615;
+font-weight: 700;
+font-weight: bold;
+font-size: 16px;
+line-height: 26px;
+letter-spacing: 0px;
+}
+
+
+.prose ul li p{
+    list-style-type: none !important;
+     font-weight: 400;
+  font-style: normal; 
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0;
+}
+
+li::marker {
+  content: "– "; /* شرطـة بدل النقطة */
+  color: #333;
+}
+
+
+.prose blockquote{
+    border-left: #D9D9D99C 3px solid;
+    padding-left: 45px;
+}
+.prose blockquote p{
+    color: #1E1E1E;
+      font-weight: 700;
+  font-style: normal;  
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0;
+}
+
+.prose blockquote h2 , h3,h4{
+    color: #1E1E1E;
+font-weight: 700;
+font-weight: bold;
+font-size: 16px;
+line-height: 26px;
+letter-spacing: 0px;
+}
+
+
+.prose blockquote p span::before {
+    content: "";
+    background-color: #4B2615;
+    display: block;
+    width: .5em;
+    height: .5em;
+    position: relative;
+    top: 16px;
+    left: -14px;
+}
