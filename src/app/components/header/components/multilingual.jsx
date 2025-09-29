@@ -42,24 +42,26 @@ export default function Multilingual() {
   };
 
   return (
-    <div>
-      <select
-        name="language"
-        id="language"
-        value={language}
-        onChange={handleChange}
-        className="
-          bg-gray-800 text-white 
-          rounded-lg px-3 py-2 
-          cursor-pointer 
-          border border-gray-600
-          focus:outline-none focus:ring-2 focus:ring-yellow-400 
-          hover:bg-gray-700 transition-colors duration-200
-        "
-      >
-        <option value="en">EN</option>
-        <option value="ar">AR</option>
-      </select>
+    <div className='mx-1'>
+      <label htmlFor="language" className="sr-only">Language</label>
+<select
+  name="language"
+  aria-label="Select Language"
+  id="language"
+  value={language}
+  onChange={handleChange}
+  className="
+    bg-transparent text-white 
+    rounded-lg  py-2 
+    cursor-pointer 
+    border border-gray-600
+    focus:outline-none focus:ring-2 focus:ring-yellow-400 
+    hover:bg-gray-700 transition-colors duration-200
+  "
+>
+  <option value="en">EN</option>
+  <option value="ar">AR</option>
+</select>
     </div>
   );
 }

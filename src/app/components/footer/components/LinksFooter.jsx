@@ -15,7 +15,6 @@ export default function LinksFooter({footerLinks}) {
         const res = await fetchFooter(language);
         const newData = res?.data?.footerLinks || [];
         setFooterData(newData);
-        console.log("Footer data:", newData);
       } catch (error) {
         console.error("Error fetching footer data:", error);
         setFooterData(footerLinks || []);

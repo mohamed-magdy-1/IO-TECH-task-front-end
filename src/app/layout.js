@@ -1,17 +1,12 @@
-
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cairo } from "next/font/google"; 
 import "./globals.css";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"], 
+  weight: ["400", "500", "700"], 
 });
 
 export const metadata = {
@@ -21,20 +16,17 @@ export const metadata = {
 
 import ClientLayout from "./clientProviders/ClientRedux";
 
-// custom-container m-auto
-export default function RootLayout({ children ,params}) {
+export default function RootLayout({ children, params }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} custom-container m-auto relative overflow-x-hidden ${geistMono.variable}   antialiased`}
+        className={`${cairo.variable} custom-container m-auto relative overflow-x-hidden antialiased`}
       >
-        
-          <ClientLayout>
-            <Header params={params}/>
+        <ClientLayout>
+          <Header params={params}/>
           {children}
           <Footer/>
         </ClientLayout>
-        
       </body>
     </html>
   );

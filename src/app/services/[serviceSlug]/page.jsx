@@ -4,7 +4,7 @@ import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import ServiceBlog from "./components/ServiceBlog";
 
-
+export const revalidate = 60
 export default async function Page({ params }) {
   const { serviceSlug,lang} = params;
   
@@ -28,7 +28,7 @@ export default async function Page({ params }) {
       <div className={`flex p-5 mt-[40px] justify-start gap-[20px] items-start`}>
 
         <div className=" md:!w-[900px] custom-container m-auto">
-          <Link href={"/"} className="w-full flex justify-start items-center gap-1">
+          <Link href={"/services"} className="w-full flex justify-start items-center gap-1">
             <IoIosArrowBack /> Back
           </Link>
 

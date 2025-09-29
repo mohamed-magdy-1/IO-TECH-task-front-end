@@ -65,6 +65,8 @@ export default function HeroContent({ data ,videoRef }) {
             width={150}
             height={150}
             className="object-cover w-full h-auto"
+            decoding="async"
+            fetchpriority="high"
           />
         </div>
 

@@ -17,8 +17,8 @@ export default function Card({item}) {
                 </div>
 
                 <div>
-                    <h5 className='text-center font-medium text-[22px]  leading-[32px] text-[#4B2615] text-lg'>{item.name}</h5>
-                    <h3 className='text-sm text-[#15143966]  text-[14px] uppercase tracking-[2px] text-center leading-[26px] font-bold '>{item.positon}</h3>
+                    <h3 className='text-center font-medium text-[22px]  leading-[32px] text-[#4B2615] text-lg'>{item.name}</h3>
+                    <h4 className='text-sm text-[#15143966]  text-[14px] uppercase tracking-[2px] text-center leading-[26px] font-bold '>{item.positon}</h4>
                     <div className='flex items-center justify-center gap-4 text-[#000000] text-[20px] mt-2'>
                         <MdOutlineWhatsapp />
                         <LiaPhoneVolumeSolid/>

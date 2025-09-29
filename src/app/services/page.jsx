@@ -17,7 +17,6 @@ export default async function Page({ searchParams }) {
   let data = Service.data
 
 
-console.log(searchParams?.page);
 
   return (
     <section>

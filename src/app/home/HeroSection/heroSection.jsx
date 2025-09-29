@@ -1,7 +1,7 @@
 import HeroSlider from '@/app/components/Sliders/heroSlider/heroSlider'
 import { fetchHero } from '@/app/featchData/api';
 import React from 'react'
-
+export const revalidate = 60
 export default async function HeroSection({ language  }) {
 
 

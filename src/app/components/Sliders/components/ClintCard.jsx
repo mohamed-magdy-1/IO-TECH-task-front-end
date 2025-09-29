@@ -1,13 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-export default function ClintCard({data}) {
+export default function ClintCard({language,data}) {
+
   return (
-    <div className=" py-6">
+    <div style={{direction: language === "en" ? "ltr" : "rtl"}}  className=" py-6">
 
 
       
-      <div className="flex flex-col md:flex-row gap-6 md:gap-[30px] mt-12">
+      <div style={{direction: language === "en" ? "ltr" : "rtl"}} className="flex flex-col md:flex-row gap-6 md:gap-[30px] mt-12">
    
 
 <div className="w-[374px] h-[320px] bg-[#643F2E] flex items-end justify-center overflow-hidden ">

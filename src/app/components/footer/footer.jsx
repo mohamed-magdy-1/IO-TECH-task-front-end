@@ -6,10 +6,10 @@ import LinksFooter from './components/LinksFooter';
 import SubscriberInput from './components/SubscriberInput';
 import { fetchFooter } from '@/app/featchData/api';
 export const revalidate = 60
-export default async function Footer() {
+export default async function Footer({perms}) {
   const FooterData = await fetchFooter();
 
-
+console.log(perms?.lang);
 
 
   return (
