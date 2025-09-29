@@ -9,8 +9,6 @@ export const revalidate = 60
 export default async function Footer({perms}) {
   const FooterData = await fetchFooter();
 
-console.log(perms?.lang);
-
 
   return (
     <footer className="w-full py-12 px-5 md:px-16 bg-[#4B2615] mt-5">

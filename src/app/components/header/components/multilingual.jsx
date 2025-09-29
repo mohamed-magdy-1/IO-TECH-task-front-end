@@ -13,30 +13,32 @@ export default function Multilingual() {
   const router = useRouter();
   const pathname = usePathname();
 
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      let lang = params.get('lang');
+      // لو مفيش لغة فى الرابط خليها EN افتراضى
+      if (!lang) {
+        lang = 'en';
+        params.set('lang', 'en');
+        router.replace(`${pathname}?${params.toString()}`);
+      }
+      dispatch(setLanguage(lang));
       setCurrentParams(window.location.search);
     }
-  }, []);
+  }, [dispatch, pathname, router]);
 
   const handleChange = (e) => {
     const newLang = e.target.value;
     dispatch(setLanguage(newLang));
-
     try {
-  
       const params = new URLSearchParams(currentParams);
       params.set('lang', newLang);
-      
       const newUrl = `${pathname}?${params.toString()}`;
       router.push(newUrl);
-      
-      
       setCurrentParams(`?${params.toString()}`);
     } catch (error) {
       console.warn('Failed to update URL params:', error);
-     
       router.push(`${pathname}?lang=${newLang}`);
     }
   };
@@ -44,24 +46,24 @@ export default function Multilingual() {
   return (
     <div className='mx-1'>
       <label htmlFor="language" className="sr-only">Language</label>
-<select
-  name="language"
-  aria-label="Select Language"
-  id="language"
-  value={language}
-  onChange={handleChange}
-  className="
-    bg-transparent text-white 
-    rounded-lg  py-2 
-    cursor-pointer 
-    border border-gray-600
-    focus:outline-none focus:ring-2 focus:ring-yellow-400 
-    hover:bg-gray-700 transition-colors duration-200
-  "
->
-  <option value="en">EN</option>
-  <option value="ar">AR</option>
-</select>
+      <select
+        name="language"
+        aria-label="Select Language"
+        id="language"
+        value={language}
+        onChange={handleChange}
+        className="
+          bg-transparent text-white 
+          rounded-lg py-2 
+          cursor-pointer 
+          border border-gray-600
+          focus:outline-none focus:ring-2 focus:ring-yellow-400 
+          hover:bg-gray-700 transition-colors duration-200
+        "
+      >
+        <option value="en">EN</option>
+        <option value="ar">AR</option>
+      </select>
     </div>
   );
 }
